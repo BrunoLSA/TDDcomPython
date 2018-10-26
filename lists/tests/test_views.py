@@ -153,3 +153,8 @@ class NewListTest(TestCase):
     def test_for_invalid_input_passes_from_to_template(self):
         response = self.client.post('/lists/new', data={'text': ''})
         self.assertIsInstance(response.context['form'], ItemForm)
+
+class MyListsTest(TestCase):
+    def test_my_lists_url_render_my_lists_template(self):
+        response = self.client.get('/lists/users/a@b.com/')
+        self.assertTemplateUsed(response, 'my_lists.html')
